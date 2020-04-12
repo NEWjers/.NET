@@ -9,81 +9,74 @@ namespace Lab2
         protected string Name;
         protected string Surname;
         protected DateTime BirthDate;
-        public string Names
-        {
-            get
-            {
-                return Name;
-            }
-            set
-            {
-                Name = value;
-            }
-        }
-        public string Surnames
-        {
-            get
-            {
-                return Surname;
-            }
-            set
-            {
-                Surname = value;
-            }
-        }
-        public DateTime Date {
-            get
-            {
-                return BirthDate;
-            }
-            set
-            {
-                BirthDate = value;
-            }
-        }
-
-        public object DeepCopy()
-        {
-            return new Person { Name = this.Name, Surname = this.Surname, Date = this.Date };
-        }
 
         public Person(string name, string surname, DateTime birthdate)
         {
             Name = name;
             Surname = surname;
-            Date = birthdate;
+            BirthDate = birthdate;
         }
 
         public Person()
         {
             Name = "Empty";
             Surname = "Empty";
-            Date = new DateTime(2000, 1, 1);
+            BirthDate = new DateTime(2000, 1, 1);
+        }
+
+        public void SetName(string name)
+        {
+            Name = name;
+        }
+
+        public string GetName()
+        {
+            return Name;
+        }
+
+        public void SetSurname(string surname)
+        {
+            Surname = surname;
+        }
+
+        public string GetSurname()
+        {
+            return Surname;
+        }
+
+        public void SetBirthDate(DateTime birthdate)
+        {
+            BirthDate = birthdate;
+        }
+
+        public DateTime GetBirthDate()
+        {
+            return BirthDate;
         }
 
         public void SetIntBirthDate(int day, int month, int year)
         {
-            Date = new DateTime(year, month, day);
+            BirthDate = new DateTime(year, month, day);
         }
 
         public int GetDay()
         {
-            return Date.Day;
+            return BirthDate.Day;
         }
 
         public int GetMonth()
         {
-            return Date.Month;
+            return BirthDate.Month;
         }
 
         public int GetYear()
         {
-            return Date.Year;
+            return BirthDate.Year;
         }
 
         public override string ToString()
         {
-            return Name + " " + Surname + " " + Date.ToString();
+            return Name + " " + Surname + " " + BirthDate.ToString();
         }
 
         public virtual string ToShortString()
@@ -93,36 +86,48 @@ namespace Lab2
 
         public override bool Equals(object obj)
         {
-            if (obj == null)
-                return false;
-            Person person = obj as Person;
-            if (person as Person == null)
-                return false;
-            return person.Name == this.Name && person.Surname == this.Surname && person.BirthDate == this.BirthDate;
+            Person person = (Person)obj;
+            return (Name == person.Name && Surname == person.Surname && BirthDate == person.BirthDate);
         }
 
-        /*public static bool operator ==(Person person1, Person person2)
+        public static bool operator ==(Person person1, Person person2)
         {
-            if ((person1.Name == person2.Name) && (person1.Surname == person2.Surname) && (person1.BirthDate == person2.BirthDate))
-                return true;
-            else
-                return false;
-        }*/
+            return person1.Equals(person2);
+        }
 
-        /*public static bool operator !=(Person person1, Person person2)
+        public static bool operator !=(Person person1, Person person2)
         {
-            if (person1.Name != person2.Name && person1.Surname != person2.Surname && person1.BirthDate != person2.BirthDate)
-                return true;
-            else
-                return false;
-        }*/
+            return !person1.Equals(person2);
+        }
 
         public override int GetHashCode()
         {
             int hashcode = Name.GetHashCode();
             hashcode = 31 * hashcode + Surname.GetHashCode();
-            hashcode = 31 * hashcode + Date.GetHashCode();
+            hashcode = 31 * hashcode + BirthDate.GetHashCode();
             return hashcode;
         }
+
+        public object DeepCopy()
+        {
+            Person copy = new Person();
+            copy.Name = Name;
+            copy.Surname = Surname;
+            copy.BirthDate = BirthDate;
+            return (object)copy;
+        }
+
+        public DateTime Date
+        {
+            get
+            {
+                return Date;
+            }
+            set
+            {
+                Date = value;
+            }
+        }
+
     }
 }

@@ -6,24 +6,48 @@ namespace Lab2
 {
     class Test
     {
-        private string SubjectName;
-        private bool Result;
+        string SubjectName;
+        bool SubjectResult;
 
-        public Test(string subjectname, bool result)
+        public string Name
         {
-            SubjectName = subjectname;
-            Result = result;
+            get
+            {
+                return SubjectName;
+            }
+            set
+            {
+                SubjectName = value;
+            }
+        }
+
+        public bool Result
+        {
+            get
+            {
+                return SubjectResult;
+            }
+            set
+            {
+                SubjectResult = value;
+            }
         }
 
         public Test()
         {
             SubjectName = "Empty";
-            Result = false;
+            SubjectResult = false;
+        }
+
+        public Test(string name, bool result)
+        {
+            SubjectName = name;
+            SubjectResult = result;
         }
 
         public override string ToString()
         {
-            return SubjectName + " " + Result.ToString();
+            return SubjectName + " " + SubjectResult.ToString() + " " ;
         }
     }
 }
