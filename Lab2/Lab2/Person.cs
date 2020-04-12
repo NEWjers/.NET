@@ -108,7 +108,7 @@ namespace Lab2
             return hashcode;
         }
 
-        public object DeepCopy()
+        public virtual object DeepCopy()
         {
             Person copy = new Person();
             copy.Name = Name;
@@ -117,7 +117,7 @@ namespace Lab2
             return (object)copy;
         }
 
-        public DateTime Date
+        public virtual DateTime Date
         {
             get
             {
