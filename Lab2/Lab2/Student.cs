@@ -182,6 +182,33 @@ namespace Lab2
             }
         }
 
+        public System.Collections.IEnumerable GetEnumeratorUnion()
+        {
+            System.Collections.ArrayList union = new System.Collections.ArrayList();
+            for(int i = 0; i < Tests.Count; i++)
+            {
+                union.Add(Tests[i]);
+            }
+            for (int i = 0; i < Exams.Count; i++)
+            {
+                union.Add(Exams[i]);
+            }
+            for (int i = 0; i < union.Count; i++)
+            {
+                yield return union[i];
+            }
+        }
 
+        public System.Collections.IEnumerable GetEnumeratorMoreThan(double mark)
+        {
+            for (int i = 0; i < Exams.Count; i++)
+            {
+                Exam exam = (Exam)Exams[i];
+                if(exam.Mark > mark)
+                {
+                    yield return exam;
+                }
+            }
+        }
     }
 }
