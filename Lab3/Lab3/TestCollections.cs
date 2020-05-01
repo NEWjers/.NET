@@ -36,6 +36,7 @@ namespace Lab3
                 {
                     return n.Value;
                 }
+                i++;
             }
             return new Student();
         }
@@ -49,6 +50,7 @@ namespace Lab3
                 {
                     return n.Value;
                 }
+                i++;
             }
             return new Student();
         }
@@ -72,7 +74,7 @@ namespace Lab3
             Console.WriteLine("List<string>: ");
             var startTimeStrings = System.Diagnostics.Stopwatch.StartNew();
             if (index < 0 || index > Strings.Count)
-            {
+            {   
                 Console.WriteLine("Out of range");
             }
             else
